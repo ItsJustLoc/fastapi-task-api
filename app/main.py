@@ -1,7 +1,9 @@
 from fastapi import FastAPI
-from app.schemas.task import TaskCreate, TaskRead, TaskUpdate
+
+from app.api.tasks import router as tasks_router
 
 app = FastAPI()
+app.include_router(tasks_router)
 
 @app.get("/")
 async def root():
