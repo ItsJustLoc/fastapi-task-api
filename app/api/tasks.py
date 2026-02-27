@@ -48,3 +48,14 @@ async def updateTask(task_id: int, task_in: TaskUpdate, db = Depends(get_db)):
     db.commit()
     db.refresh(task)
     return task
+
+@router.delete("/tasks/{task_id}", response_model=TaskRead, status_code=200)
+async def deleteTask(task_id: int, db = Depends(get_db)):
+    task = db.scalars(select(Task).where(Task.id == task_id)).first()
+
+    if not task:
+      raise HTTPException(status_code=404, detail="Task not found")
+
+    db.delete(task)
+    db.commit()
+    return task
