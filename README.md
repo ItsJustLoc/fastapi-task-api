@@ -55,7 +55,7 @@ fastapi-task-api/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/fastapi-task-api.git
+git clone https://github.com/ItsJustLoc/fastapi-task-api.git
 cd fastapi-task-api
 ```
 
@@ -126,11 +126,13 @@ http://127.0.0.1:8000
 
 ```
 POST /tasks
+Content-Type: application/json
 ```
 
 ```json
 {
-  "title": "Finish FastAPI project"
+  "title": "Finish FastAPI project",
+  "completed": false
 }
 ```
 
@@ -140,29 +142,42 @@ POST /tasks
 GET /tasks
 ```
 
+### Get One Task
+
+```
+GET /tasks/{task_id}
+```
+
+```json
+{
+    "completed": true
+}
+```
+
 ### Update Task
 
 ```
-PUT /tasks/{id}
+PATCH /tasks/{task_id}
+Content-Type: application/json
 ```
 
 ### Delete Task
 
 ```
-DELETE /tasks/{id}
+DELETE /tasks/{task_id}
+```
+
+### Example Success Response
+
+```json
+{
+    "id": 1,
+    "title": "Finish FastAPI Project"
+    "completed": false
+}
 ```
 
 ---
-
-## Development Roadmap
-
-* [ ] Add CRUD endpoints
-* [ ] Add validation and error handling
-* [ ] Add tests
-* [ ] Add authentication
-
----
-
 ## Purpose of This Project
 
 This repository is part of a backend engineering portfolio focused on:
